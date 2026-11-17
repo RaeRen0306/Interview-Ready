@@ -23,22 +23,22 @@ export default function Interview() {
 
       <br />
       <br />
-
-      <button
-        style={{
-          padding: "12px 20px",
-          width: "250px",
-          backgroundColor: "#2563eb",
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-        }}
-      >
-        Technical Interview
-      </button>
-
-      <br />
+ <a href="/dashboard/interview/technical">
+        <button
+          style={{
+            padding: "12px 20px",
+            width: "250px",
+            backgroundColor: "#2563eb",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+        >
+          Technical Interview
+        </button>
+      </a>
+            <br />
       <br />
 
       <button
