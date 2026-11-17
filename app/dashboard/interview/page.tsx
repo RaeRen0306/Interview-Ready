@@ -1,10 +1,57 @@
 export default function Interview() {
   return (
-    <main>
+    <div>
       <h1>Start Interview</h1>
-      <p>Interview page coming soon.</p>
-    </main>
+
+      <p>Choose the type of interview you want to practice.</p>
+
+      <button
+        style={{
+          padding: "12px 20px",
+          width: "250px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        Behavioral Interview
+      </button>
+
+      <br />
+      <br />
+
+      <button
+        style={{
+          padding: "12px 20px",
+          width: "250px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        Technical Interview
+      </button>
+
+      <br />
+      <br />
+
+      <button
+        style={{
+          padding: "12px 20px",
+          width: "250px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        Custom Interview
+      </button>
+    </div>
   );
-};
-
-
+}
