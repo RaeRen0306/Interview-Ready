@@ -12,7 +12,9 @@ export default function DashboardLayout({
           borderRight: "1px solid gray",
         }}
       >
-        <h2>Interview Ready</h2>
+        <h2>
+          <a href="/dashboard">Interview Ready</a>
+        </h2>
 
         <a href="/dashboard">Dashboard</a>
         <br />
