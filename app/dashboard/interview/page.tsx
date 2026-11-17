@@ -40,7 +40,7 @@ export default function Interview() {
       </a>
             <br />
       <br />
-
+<a href="/dashboard/interview/custom">
       <button
         style={{
           padding: "12px 20px",
@@ -54,6 +54,7 @@ export default function Interview() {
       >
         Custom Interview
       </button>
+      </a>
     </div>
   );
 }
