@@ -5,19 +5,21 @@ export default function Interview() {
 
       <p>Choose the type of interview you want to practice.</p>
 
-      <button
-        style={{
-          padding: "12px 20px",
-          width: "250px",
-          backgroundColor: "#2563eb",
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-        }}
-      >
-        Behavioral Interview
-      </button>
+      <a href="/dashboard/interview/behavioral">
+        <button
+          style={{
+            padding: "12px 20px",
+            width: "250px",
+            backgroundColor: "#2563eb",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+        >
+          Behavioral Interview
+        </button>
+      </a>
 
       <br />
       <br />
