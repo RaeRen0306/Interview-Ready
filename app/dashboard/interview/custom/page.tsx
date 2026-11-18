@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
 export default function CustomInterviewPage() {
+  const [showQuestions, setShowQuestions] = useState(false);
+
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">
@@ -62,9 +68,26 @@ export default function CustomInterviewPage() {
           </select>
         </div>
 
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+        <button
+          onClick={() => setShowQuestions(true)}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
+        >
           Generate Interview
         </button>
+
+        {showQuestions && (
+          <div>
+            <h2>Generated Interview</h2>
+
+            <ol>
+              <li>Tell me about yourself.</li>
+              <li>Why are you interested in this position?</li>
+              <li>Describe a difficult challenge you solved.</li>
+              <li>How do you handle competing priorities?</li>
+              <li>What is your greatest professional accomplishment?</li>
+            </ol>
+          </div>
+        )}
       </div>
     </div>
   );
