@@ -24,40 +24,36 @@ export default function Interview() {
       <br />
       <br />
 
-      <a href="/dashboard/interview/technical">
-  <button
-    style={{
-      padding: "12px 20px",
-      width: "250px",
-      backgroundColor: "#2563eb",
-      color: "white",
-      border: "none",
-      borderRadius: "8px",
-      cursor: "pointer",
-    }}
-  >
-    Technical Interview
-  </button>
-</a>
+      <button
+        style={{
+          padding: "12px 20px",
+          width: "250px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        Technical Interview
+      </button>
 
       <br />
       <br />
 
-      <a href="/dashboard/interview/custom">
-  <button
-    style={{
-      padding: "12px 20px",
-      width: "250px",
-      backgroundColor: "#2563eb",
-      color: "white",
-      border: "none",
-      borderRadius: "8px",
-      cursor: "pointer",
-    }}
-  >
-    Custom Interview
-  </button>
-</a>
+      <button
+        style={{
+          padding: "12px 20px",
+          width: "250px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        Custom Interview
+      </button>
     </div>
   );
 }
