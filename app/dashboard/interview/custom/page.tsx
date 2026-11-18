@@ -1,4 +1,4 @@
-}export default function CustomInterviewPage() {
+export default function CustomInterviewPage() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">
@@ -32,7 +32,6 @@
           <label className="block mb-2 font-medium">
             Experience Level
           </label>
-
           <select className="w-full border rounded-lg p-3">
             <option>Entry Level</option>
             <option>Mid Level</option>
@@ -44,7 +43,6 @@
           <label className="block mb-2 font-medium">
             Interview Type
           </label>
-
           <select className="w-full border rounded-lg p-3">
             <option>Behavioral</option>
             <option>Technical</option>
@@ -56,7 +54,6 @@
           <label className="block mb-2 font-medium">
             Number of Questions
           </label>
-
           <select className="w-full border rounded-lg p-3">
             <option>5</option>
             <option>10</option>
