@@ -79,7 +79,7 @@ export default function CustomInterviewPage() {
           <div>
             <h2>Generated Interview</h2>
 
-            <ol>
+            <ol className="list-decimal ml-6">
               <li>Tell me about yourself.</li>
               <li>Why are you interested in this position?</li>
               <li>Describe a difficult challenge you solved.</li>
