@@ -1,8 +1,5 @@
+import ProgressView from "@/components/ProgressView";
+
 export default function Progress() {
-  return (
-    <main>
-      <h1>Progress</h1>
-      <p>Progress tracking coming soon.</p>
-    </main>
-  );
+  return <ProgressView />;
 }

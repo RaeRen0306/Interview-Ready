@@ -1,77 +1,22 @@
+import Link from "next/link";
+
 export default function Home() {
-
   return (
-
-    <main
-
-      style={{
-
-        minHeight: "100vh",
-
-        display: "flex",
-
-        flexDirection: "column",
-
-        justifyContent: "center",
-
-        alignItems: "center",
-
-        backgroundColor: "#0f172a",
-
-        color: "white",
-
-        fontFamily: "Arial, sans-serif",
-
-      }}
-
-    >
-
-      <h1 style={{ fontSize: "4rem", marginBottom: "1rem" }}>
-
-        Interview Ready
-
+    <main className="flex min-h-screen flex-col items-center justify-center bg-slate-900 px-6 text-center text-white">
+      <h1 className="mb-4 text-5xl font-bold sm:text-6xl">
+        Interview <span className="text-teal-400">Ready</span>
       </h1>
+      <p className="text-xl text-slate-400 sm:text-2xl">Practice. Improve. Get Hired.</p>
 
-
-
-      <p style={{ fontSize: "1.5rem", color: "#94a3b8" }}>
-
-        Practice. Improve. Get Hired.
-
-      </p>
-
-
-
-      <button
-
-        style={{
-
-          marginTop: "2rem",
-
-          padding: "12px 24px",
-
-          borderRadius: "8px",
-
-          border: "none",
-
-          backgroundColor: "#14b8a6",
-
-          color: "white",
-
-          fontSize: "1rem",
-
-          cursor: "pointer",
-
-        }}
-
+      <Link
+        href="/dashboard/interview"
+        className="mt-10 rounded-lg bg-teal-500 px-8 py-3 text-lg font-medium text-white hover:bg-teal-600"
       >
-
         Start Interview
-
-      </button>
-
+      </Link>
+      <Link href="/dashboard" className="mt-4 text-sm text-slate-400 hover:text-white">
+        Go to dashboard
+      </Link>
     </main>
-
   );
-
 }

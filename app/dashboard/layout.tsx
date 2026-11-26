@@ -1,39 +1,20 @@
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { Suspense } from "react";
+import Link from "next/link";
+import Sidebar, { SidebarFallback } from "@/components/Sidebar";
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: "flex" }}>
-      <div
-        style={{
-          width: "250px",
-          padding: "20px",
-          borderRight: "1px solid gray",
-        }}
-      >
-        <h2>
-          <a href="/dashboard">Interview Ready</a>
-        </h2>
+    <div className="flex min-h-screen bg-slate-50">
+      <aside className="w-64 shrink-0 bg-slate-900 p-5 print:hidden">
+        <Link href="/" className="mb-8 block text-xl font-bold text-white">
+          Interview <span className="text-teal-400">Ready</span>
+        </Link>
+        <Suspense fallback={<SidebarFallback />}>
+          <Sidebar />
+        </Suspense>
+      </aside>
 
-        <a href="/dashboard">Dashboard</a>
-        <br />
-
-        <a href="/dashboard/interview">Start Interview</a>
-        <br />
-
-        <a href="/dashboard/resume">Resume Center</a>
-        <br />
-
-        <a href="/dashboard/progress">Progress</a>
-        <br />
-
-        <a href="/dashboard/settings">Settings</a>
-      </div>
-
-      <div style={{ padding: "20px" }}>
-        {children}
-      </div>
+      <main className="flex-1 p-6 sm:p-10">{children}</main>
     </div>
   );
 }

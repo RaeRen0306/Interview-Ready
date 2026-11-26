@@ -1,13 +1,11 @@
+import InterviewPractice from "@/components/InterviewPractice";
+
 export default function BehavioralInterview() {
   return (
-    <div>
-      <h1>Behavioral Interview</h1>
-
-      <p>Welcome to the Behavioral Interview practice area.</p>
-
-      <p>Question 1:</p>
-
-      <p>Tell me about yourself.</p>
-    </div>
+    <InterviewPractice
+      title="Behavioral Interview"
+      description="Practice the 'tell me about a time when...' questions that most interviews include."
+      fixedType="Behavioral"
+    />
   );
 }
