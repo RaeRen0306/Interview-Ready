@@ -15,6 +15,8 @@ import {
 import { saveSession } from "@/lib/history";
 import { findSaved, saveAnswer } from "@/lib/library";
 import { useLibrary } from "./useLibrary";
+import FeedbackPanel, { type FeedbackState } from "./FeedbackPanel";
+import { isAiConfigured, requestFeedback } from "@/lib/feedback";
 
 interface Props {
   title: string;
@@ -48,6 +50,9 @@ export default function InterviewPractice({ title, description, fixedType, gener
   const [index, setIndex] = useState(0);
   const [showTip, setShowTip] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [feedbacks, setFeedbacks] = useState<Record<number, FeedbackState>>({});
+  const [aiReady, setAiReady] = useState<boolean | null>(null);
+  const [gettingAll, setGettingAll] = useState(false);
   const library = useLibrary();
 
   function update<K extends keyof InterviewSettings>(key: K, value: InterviewSettings[K]) {
@@ -61,6 +66,7 @@ export default function InterviewPractice({ title, description, fixedType, gener
     setIndex(0);
     setShowTip(false);
     setFinished(false);
+    setFeedbacks({});
   }
 
   function goTo(i: number) {
@@ -82,6 +88,49 @@ export default function InterviewPractice({ title, description, fixedType, gener
       answered: answers.filter((a) => a.trim().length > 0).length,
     });
     setFinished(true);
+    isAiConfigured().then(setAiReady);
+  }
+
+  const feedbackContext = {
+    jobTitle: historyInfo?.jobTitle ?? settings.jobTitle.trim(),
+    company: historyInfo ? "" : settings.company.trim(),
+    level: historyInfo?.level ?? settings.level,
+  };
+
+  async function getFeedback(i: number) {
+    if (!questions || !answers[i].trim()) return;
+    setFeedbacks((f) => ({ ...f, [i]: { status: "loading" } }));
+    try {
+      const feedback = await requestFeedback(questions[i], answers[i].trim(), feedbackContext);
+      setFeedbacks((f) => ({ ...f, [i]: { status: "done", feedback } }));
+    } catch (e) {
+      setFeedbacks((f) => ({
+        ...f,
+        [i]: { status: "error", error: e instanceof Error ? e.message : "Something went wrong." },
+      }));
+    }
+  }
+
+  async function getAllFeedback() {
+    if (!questions) return;
+    setGettingAll(true);
+    for (let i = 0; i < questions.length; i++) {
+      const current = feedbacks[i]?.status;
+      if (answers[i].trim() && current !== "done" && current !== "loading") {
+        await getFeedback(i);
+      }
+    }
+    setGettingAll(false);
+  }
+
+  function saveImproved(i: number, text: string) {
+    if (!questions) return;
+    saveAnswer({
+      question: questions[i].text,
+      category: questions[i].category,
+      answer: text.trim(),
+      jobTitle: feedbackContext.jobTitle,
+    });
   }
 
   function saveToLibrary(i: number) {
@@ -218,6 +267,7 @@ export default function InterviewPractice({ title, description, fixedType, gener
 
   const answeredCount = answers.filter((a) => a.trim().length > 0).length;
   const unsavedCount = questions.filter((_, i) => answers[i].trim() && libraryStatus(i) !== "saved").length;
+  const needFeedbackCount = questions.filter((_, i) => answers[i].trim() && feedbacks[i]?.status !== "done").length;
 
   // ---------- Step 3: review ----------
   if (finished) {
@@ -231,6 +281,16 @@ export default function InterviewPractice({ title, description, fixedType, gener
             </p>
           </div>
           <div className="flex flex-wrap gap-3 print:hidden">
+            {aiReady && needFeedbackCount > 0 && (
+              <button
+                type="button"
+                className="rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white hover:bg-indigo-700 disabled:opacity-50"
+                disabled={gettingAll}
+                onClick={getAllFeedback}
+              >
+                {gettingAll ? "Getting Feedback..." : `Get AI Feedback on All (${needFeedbackCount})`}
+              </button>
+            )}
             {unsavedCount > 0 && (
               <button
                 type="button"
@@ -251,6 +311,16 @@ export default function InterviewPractice({ title, description, fixedType, gener
             </button>
           </div>
         </div>
+
+        {aiReady === false && answeredCount > 0 && (
+          <div className="mb-6 rounded-xl border border-indigo-200 bg-indigo-50 p-4 text-sm text-indigo-900 print:hidden">
+            <span className="font-semibold">AI feedback is available but not set up yet.</span> Once it&apos;s set up, an AI coach
+            can score each answer and suggest a stronger version.{" "}
+            <Link href="/dashboard/settings" className="font-medium underline">
+              See Settings
+            </Link>
+          </div>
+        )}
 
         <ol className="space-y-4">
           {questions.map((q, i) => (
@@ -277,6 +347,15 @@ export default function InterviewPractice({ title, description, fixedType, gener
                       </button>
                     )}
                   </div>
+                  {aiReady && (
+                    <div className="mt-3">
+                      <FeedbackPanel
+                        state={feedbacks[i]}
+                        onRequest={() => getFeedback(i)}
+                        onSaveImproved={(text) => saveImproved(i, text)}
+                      />
+                    </div>
+                  )}
                 </>
               ) : (
                 <p className="italic text-slate-400">No answer written.</p>

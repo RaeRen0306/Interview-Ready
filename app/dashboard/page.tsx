@@ -20,6 +20,21 @@ export default function Dashboard() {
         </Link>
       </div>
 
+      <div className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-teal-200 bg-teal-50 p-5">
+        <div>
+          <p className="font-semibold text-slate-900">New here, or need a refresher?</p>
+          <p className="text-sm text-slate-700">
+            Read the guide, or click <span className="font-medium">Help</span> in the bottom-right corner of any page.
+          </p>
+        </div>
+        <Link
+          href="/dashboard/help"
+          className="rounded-lg border border-teal-600 bg-white px-4 py-2 font-medium text-teal-700 hover:bg-teal-100"
+        >
+          How It Works
+        </Link>
+      </div>
+
       <RecentActivity />
     </div>
   );

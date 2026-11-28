@@ -12,6 +12,7 @@ const links = [
   { href: "/dashboard/resume", label: "Resume Center" },
   { href: "/dashboard/progress", label: "Progress" },
   { href: "/dashboard/settings", label: "Settings" },
+  { href: "/dashboard/help", label: "How It Works" },
 ];
 
 export default function Sidebar() {

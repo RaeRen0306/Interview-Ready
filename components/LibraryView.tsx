@@ -17,7 +17,7 @@ function AnswerCard({ item }: { item: SavedAnswer }) {
   const [draft, setDraft] = useState(item.answer);
 
   return (
-    <li className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <li className="break-inside-avoid rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
       <p className="mb-3 font-medium text-slate-900">{item.question}</p>
 
       {editing ? (

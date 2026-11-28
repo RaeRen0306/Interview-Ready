@@ -14,9 +14,15 @@ export default function Home() {
       >
         Start Interview
       </Link>
-      <Link href="/dashboard" className="mt-4 text-sm text-slate-400 hover:text-white">
-        Go to dashboard
-      </Link>
+      <div className="mt-5 flex items-center gap-4 text-sm">
+        <Link href="/dashboard/help" className="text-teal-300 hover:text-white hover:underline">
+          How it works
+        </Link>
+        <span className="text-slate-600">|</span>
+        <Link href="/dashboard" className="text-slate-400 hover:text-white hover:underline">
+          Go to dashboard
+        </Link>
+      </div>
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Sidebar, { SidebarFallback } from "@/components/Sidebar";
+import HelpPanel from "@/components/HelpPanel";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,7 +15,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </Suspense>
       </aside>
 
-      <main className="flex-1 p-6 sm:p-10">{children}</main>
+      <main className="flex-1 p-6 pb-24 sm:p-10 sm:pb-24">{children}</main>
+
+      <Suspense fallback={null}>
+        <HelpPanel />
+      </Suspense>
     </div>
   );
 }
